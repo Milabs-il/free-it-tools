@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MiLabs Tools">
 <meta property="og:title" content="כלי IT חינמיים: דומיין, מייל ואבטחה">
-<meta property="og:description" content="20 כלים חינמיים ל-DNS, ‏SPF, ‏DKIM, ‏DMARC, ‏Microsoft 365, תעודות ורשת. בלי הרשמה, רץ בדפדפן.">
+<meta property="og:description" content="23 כלים חינמיים ל-DNS, ‏SPF, ‏DKIM, ‏DMARC, ‏Microsoft 365, ‏SSL, רשימות שחורות ורשת. בלי הרשמה.">
 <meta property="og:url" content="https://tools.milabs.co.il/">
 <meta property="og:image" content="https://tools.milabs.co.il/og-he.png">
 <meta property="og:image:width" content="1200">
@@ -446,10 +446,44 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
     <form id="uaparse"><textarea name="ua" spellcheck="false" placeholder="Mozilla/5.0 ..." style="min-height:70px" aria-label="User-Agent"></textarea></form>
     <div class="out2"></div>
   </section>
+
+  <!-- MYIP -->
+  <section class="panel" data-panel="myip" hidden>
+    <h2>מה ה-IP שלי</h2>
+    <p class="lead">כתובת ה-IP הציבורית שממנה אתם גולשים, כפי שהשרת שלנו רואה אותה.</p>
+    <div class="out" aria-live="polite"></div>
+    <div class="toolbar" style="justify-content:flex-start"><button type="button" class="btn ghost" data-myip-refresh>בדוק שוב</button></div>
+  </section>
+
+  <!-- SSL -->
+  <section class="panel" data-panel="ssl" hidden>
+    <h2>בדיקת תעודת SSL</h2>
+    <p class="lead">בודק את תעודת ה-SSL של אתר או שרת: תוקף, שרשרת תעודות, התאמה לשם, וגרסאות TLS נתמכות. מתאים גם לפורטל VPN.</p>
+    <form class="q" data-run="ssl">
+      <input type="text" name="domain" placeholder="example.co.il" dir="ltr" autocomplete="off" spellcheck="false" aria-label="דומיין או IP">
+      <select name="port" aria-label="פורט" dir="ltr">
+        <option>443</option><option>8443</option><option>10443</option><option>4443</option><option>9443</option><option>465</option><option>993</option><option>995</option><option>636</option><option>853</option><option>5061</option>
+      </select>
+      <button class="btn">בדוק</button>
+    </form>
+    <p class="hint">הבדיקה מתבצעת מהשרת שלנו. נתמכים רק פורטים נפוצים של שירותי TLS.</p>
+    <div class="out" aria-live="polite"></div>
+  </section>
+
+  <!-- BLACKLIST -->
+  <section class="panel" data-panel="blacklist" hidden>
+    <h2>בדיקת רשימות שחורות</h2>
+    <p class="lead">בודק אם כתובת ה-IP של שרת המייל מופיעה ברשימות חסימה (DNSBL). הזינו כתובת IP, או דומיין כדי לבדוק את שרתי ה-MX שלו.</p>
+    <form class="q" data-run="blacklist">
+      <input type="text" name="domain" placeholder="example.co.il או 203.0.113.10" dir="ltr" autocomplete="off" spellcheck="false" aria-label="דומיין או IP">
+      <button class="btn">בדוק</button>
+    </form>
+    <div class="out" aria-live="polite"></div>
+  </section>
 </main>
 
 <footer>
-  <p class="privacy">שאילתות DNS נשלחות ישירות מהדפדפן שלכם לשרתי DNS-over-HTTPS ציבוריים (Cloudflare ו-Google), וחיפוש תעודות נעשה מול crt.sh. כל השאר – ניתוח כותרות ודוחות, פענוח תעודות וטוקנים, סיסמאות וקידוד – מתבצע בדפדפן בלבד ולא נשלח לשום מקום. אין באתר עוגיות או כלי מעקב.</p>
+  <p class="privacy">שאילתות DNS נשלחות ישירות מהדפדפן שלכם לשרתי DNS-over-HTTPS ציבוריים (Cloudflare ו-Google), וחיפוש תעודות נעשה מול crt.sh. בדיקות SSL, רשימות שחורות ו"מה ה-IP שלי" עוברות דרך השרת שלנו, בלי שמירה. כל השאר – ניתוח כותרות ודוחות, פענוח תעודות וטוקנים, סיסמאות וקידוד – מתבצע בדפדפן בלבד ולא נשלח לשום מקום. אין באתר עוגיות או כלי מעקב.</p>
   <nav class="footlinks" aria-label="מידע משפטי"><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a> · <a href="terms.html">תנאי שימוש</a> · <a href="https://github.com/Milabs-il/free-it-tools">קוד מקור</a></nav>
   <div>© <span id="yr"></span> G2000 · <a href="https://milabs.co.il">MiLabs</a> · פתרונות IT, אבטחה ואוטומציה</div>
 </footer>
@@ -1539,16 +1573,103 @@ function initUA(){
   f.addEventListener('input',()=>{ const s=f.elements.ua.value.trim(); if(!s){out.innerHTML='';return;} const r=parseUA(s); out.innerHTML=`<div class="grid2"><div class="kv"><div class="k">דפדפן</div><div class="v">${esc(r.browser)}</div></div><div class="kv"><div class="k">מערכת הפעלה</div><div class="v">${esc(r.os)}</div></div><div class="kv"><div class="k">סוג מכשיר</div><div class="v">${esc(r.device)}</div></div></div>`; });
 }
 
+
+/* ================= Server-side tools (Catalyst function) ================= */
+const API = 'https://milabs-tools-931034409.development.catalystserverless.com/server/netcheck/';
+const API_ERR = {
+  missing_host:'נא להזין דומיין או כתובת IP', missing_query:'נא להזין דומיין או כתובת IP', invalid_host:'כתובת לא תקינה',
+  private_address:'אי אפשר לבדוק כתובות פנימיות או שמורות', port_not_allowed:'הפורט הזה לא נתמך',
+  host_not_found:'הדומיין לא נמצא ב-DNS', no_ipv4_found:'לא נמצאו כתובות IPv4 לבדיקה', ipv6_not_supported:'רשימות החסימה תומכות כרגע ב-IPv4 בלבד',
+  rate_limited:'יותר מדי בקשות. נסו שוב בעוד דקה.', timeout:'הבדיקה לקחה יותר מדי זמן', network:'השירות לא זמין כרגע. נסו שוב מאוחר יותר.',
+};
+async function apiGet(op, params={}){
+  const qs = new URLSearchParams(params).toString();
+  const call = async (url)=>{
+    const ctrl=new AbortController(); const t=setTimeout(()=>ctrl.abort(),30000);
+    try{ const r=await fetch(url,{signal:ctrl.signal}); const j=await r.json().catch(()=>null); return {status:r.status, json:j}; }
+    finally{ clearTimeout(t); }
+  };
+  let r;
+  try{
+    r = await call(`${API}${op}${qs?'?'+qs:''}`);
+    if(!r.json) r = await call(`${API}execute?op=${op}${qs?'&'+qs:''}`);
+  }catch(e){ const x=new Error(API_ERR.network); x.user=true; throw x; }
+  if(!r.json){ const x=new Error(API_ERR.network); x.user=true; throw x; }
+  if(r.status>=400){ const e=new Error(API_ERR[r.json.error]||API_ERR.network); e.user=true; throw e; }
+  return r.json;
+}
+
+async function showMyIp(){
+  const out=document.querySelector('[data-panel=myip] .out'); loading(out);
+  try{
+    const r=await apiGet('myip');
+    const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${esc(v)}</div></div>`;
+    out.innerHTML=`<div class="score"><div><div class="num ltr" style="font-size:32px">${esc(r.ip||'—')}</div><div style="font-size:13px;color:var(--muted)">כתובת ה-IP הציבורית שלכם</div></div></div>
+      <div class="grid2">${kv('גרסה',r.version?'IPv'+r.version:'—')}${kv('Reverse DNS (PTR)',(r.ptr||[]).join('\n')||'—')}</div>
+      ${r.ip?`<div style="height:12px"></div>${copyRow(r.ip)}`:''}`;
+  }catch(e){ out.innerHTML=errBox(e.message); }
+}
+
+tools.ssl = async (f,out)=>{
+  const host=normDomain(f.elements.domain.value,true); const port=f.elements.port.value;
+  if(!(validDomain(host)||isIPv4(host)||isIPv6(host))) return out.innerHTML=errBox('נא להזין דומיין או כתובת IP תקינים');
+  loading(out,'מתחבר לשרת ובודק את התעודה...');
+  const r=await apiGet('ssl',{host,port});
+  if(!r.reachable){ out.innerHTML=renderChecks([check('bad',`אין חיבור TLS ל-<span class="ltr mono">${esc(host)}:${esc(port)}</span>`,`השרת לא ענה בפורט הזה, או שהוא לא משתמש ב-TLS. <span class="ltr mono">${esc(r.error||'')}</span>`)]); return; }
+  const leaf=r.chain[0]||{}; const now=Date.now(); const left=leaf.valid_to?Date.parse(leaf.valid_to)-now:null;
+  const c=[];
+  if(left!=null) c.push(left<0?check('bad','התעודה פגה',`פגה ${esc(relDays(left))}`):check(left<14*86400000?'bad':left<30*86400000?'warn':'ok',`בתוקף · פגה ${esc(relDays(left))}`,esc(fmtDate(new Date(leaf.valid_to)))));
+  if(r.hostnameMatch!==null) c.push(r.hostnameMatch?check('ok','התעודה מתאימה לשם השרת'):check('bad','התעודה לא מתאימה לשם השרת',`השם <span class="ltr mono">${esc(host)}</span> לא מופיע בתעודה. דפדפנים יציגו אזהרה.`));
+  c.push(r.authorized?check('ok','שרשרת התעודות תקינה ומהימנה'):check('bad','שרשרת התעודות לא מהימנה',`<span class="ltr mono">${esc(r.authorizationError||'')}</span> – לרוב חסרה תעודת ביניים (Intermediate) בשרת, או שזו תעודה בחתימה עצמית.`));
+  const V=r.versions||{};
+  if(V['TLSv1']||V['TLSv1.1']) c.push(check('warn','השרת עדיין תומך ב-TLS 1.0 או 1.1','גרסאות מיושנות ולא מאובטחות. מומלץ לבטל אותן.'));
+  if(V['TLSv1.3']) c.push(check('ok','תמיכה ב-TLS 1.3')); else if(V['TLSv1.3']===false) c.push(check('info','אין תמיכה ב-TLS 1.3','לא חובה, אבל מומלץ.'));
+  if(leaf.bits && leaf.bits<2048 && !leaf.asn1Curve) c.push(check('bad',`מפתח RSA קצר (${leaf.bits} ביט)`));
+  const vtag=v=>V[v]===true?'<span class="tag warn">נתמך</span>':V[v]===false?'<span class="tag ok">לא נתמך</span>':'<span class="tag mut">לא ידוע</span>';
+  const vtagNew=v=>V[v]===true?'<span class="tag ok">נתמך</span>':V[v]===false?'<span class="tag mut">לא נתמך</span>':'<span class="tag mut">לא ידוע</span>';
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${esc(v)}</div></div>`;
+  const nm=o=>o.CN||o.O||Object.values(o).join(', ');
+  out.innerHTML=scoreBox(c,`ציון SSL · ${host}:${port}`)+renderChecks(c)+
+    `<h3>פרטי החיבור</h3><div class="grid2">${kv('כתובת IP',r.ip)}${kv('פרוטוקול',r.protocol||'')}${kv('Cipher',(r.cipher&&r.cipher.standardName)||'')}${kv('Subject Alternative Names',(leaf.subjectaltname||'').split(', ').join('\n'))}</div>
+     <h3>גרסאות TLS</h3>${table(['גרסה','סטטוס'],[`<tr><td class="data">TLS 1.0</td><td>${vtag('TLSv1')}</td></tr>`,`<tr><td class="data">TLS 1.1</td><td>${vtag('TLSv1.1')}</td></tr>`,`<tr><td class="data">TLS 1.2</td><td>${vtagNew('TLSv1.2')}</td></tr>`,`<tr><td class="data">TLS 1.3</td><td>${vtagNew('TLSv1.3')}</td></tr>`])}
+     <h3>שרשרת התעודות</h3>${table(['#','נושא','מנפיק','בתוקף עד','מפתח'],r.chain.map((x,i)=>`<tr><td>${i+1}</td><td class="data">${esc(nm(x.subject))}</td><td class="data">${esc(nm(x.issuer))}</td><td>${x.valid_to?esc(new Date(x.valid_to).toLocaleDateString('he-IL')):''}</td><td class="data">${x.asn1Curve?esc('EC '+x.asn1Curve):x.bits?esc('RSA '+x.bits):''}</td></tr>`))}`;
+};
+
+tools.blacklist = async (f,out)=>{
+  const raw=f.elements.domain.value.trim();
+  const q=isIPv4(raw)||isIPv6(raw)?raw:normDomain(raw);
+  if(!(isIPv4(q)||isIPv6(q)||validDomain(q))) return out.innerHTML=errBox('נא להזין דומיין או כתובת IP תקינים');
+  loading(out,'בודק ברשימות החסימה...');
+  const r=await apiGet('blacklist',{q});
+  const st={listed:['bad','רשום'],clean:['ok','לא רשום'],unavailable:['mut','לא זמין']};
+  let html='';
+  if(r.note==='no_mx_used_a') html+=renderChecks([check('info','לדומיין אין רשומות MX','נבדקו כתובות ה-IP של הדומיין עצמו.')])+'<div style="height:12px"></div>';
+  for(const t of r.targets){
+    const n=k=>t.lists.filter(l=>l.status===k).length;
+    const listed=t.lists.filter(l=>l.status==='listed');
+    const allDown=n('unavailable')===t.lists.length;
+    html+=`<h3><span class="ltr mono">${esc(t.ip)}</span>${t.source!=='input'?` · <span class="ltr mono" style="color:var(--muted)">${esc(t.source)}</span>`:''}</h3>`;
+    html+=renderChecks([allDown?check('warn','לא ניתן היה לבדוק כרגע','רשימות החסימה לא ענו לשרת שלנו. נסו שוב מאוחר יותר, או השתמשו בקישורים למטה.')
+      : listed.length?check('bad',listed.length===1?'רשום ברשימה אחת':`רשום ב-${listed.length} רשימות`, 'מיילים מהכתובת הזו עלולים להיחסם. בקישור של כל רשימה מוסבר למה הכתובת נרשמה ואיך מבקשים הסרה.')
+      : check('ok','לא נמצא באף רשימה שנבדקה',`${n('clean')} רשימות נבדקו${n('unavailable')?`, ‏${n('unavailable')} לא זמינות כרגע`:''}.`)]);
+    html+='<div style="height:10px"></div>'+table(['רשימה','סטטוס','פרטים'],t.lists.map(l=>`<tr><td>${esc(l.name)}${l.network?' <span class="tag mut">רשת</span>':''}</td><td><span class="tag ${st[l.status][0]}">${st[l.status][1]}</span></td><td class="data">${l.reason?esc(l.reason)+'<br>':''}<a href="${esc(l.url)}" target="_blank" rel="noopener">בדיקה באתר הרשימה</a></td></tr>`));
+  }
+  const ip0=r.targets[0]&&r.targets[0].ip;
+  html+=`<h3>רשימות שנבדקות באתר שלהן</h3>`+renderChecks(r.external.map(x=>check('info',esc(x.name),`הרשימה לא מאפשרת בדיקה אוטומטית מכלים ציבוריים. <a href="${esc(x.url)}" target="_blank" rel="noopener">לבדיקה באתר ${esc(x.name)}</a>${ip0?` (הכתובת לבדיקה: <span class="ltr mono">${esc(ip0)}</span>)`:''}`)));
+  html+=`<p class="hint">רשימה מסומנת "רשת" בודקת את כל טווח הכתובות של הספק, ולא רק את הכתובת שלכם.</p>`;
+  out.innerHTML=html;
+};
+
 /* ================= UI wiring ================= */
 const CATS=[
   {name:'דומיין ו-DNS', tools:['health','dns','compare','crtsh']},
-  {name:'מייל', tools:['spf','spfgen','dmarc','dmarcgen','dmarcxml','dkim','headers']},
+  {name:'מייל', tools:['spf','spfgen','dmarc','dmarcgen','dmarcxml','dkim','blacklist','headers']},
   {name:'Microsoft 365', tools:['m365','m365gen']},
-  {name:'אבטחה', tools:['certdec','passgen','jwt']},
-  {name:'רשת', tools:['subnet']},
+  {name:'אבטחה', tools:['ssl','certdec','passgen','jwt']},
+  {name:'רשת', tools:['myip','subnet']},
   {name:'כלי עזר', tools:['encode','qr','ua']},
 ];
-const TOOL_NAMES={health:'בדיקת דומיין מלאה',dns:'DNS Lookup',compare:'השוואת Resolvers',crtsh:'תעודות ותת-דומיינים',spf:'בדיקת SPF',spfgen:'מחולל SPF',dmarc:'בדיקת DMARC',dmarcgen:'מחולל DMARC',dmarcxml:'ניתוח דוחות DMARC',dkim:'בדיקת DKIM',headers:'ניתוח כותרות',m365:'בדיקת M365',m365gen:'מחולל רשומות M365',certdec:'מפענח תעודות ו-CSR',passgen:'מחולל סיסמאות',jwt:'מפענח JWT',subnet:'מחשבון Subnet',encode:'קידוד ו-Hash',qr:'מחולל QR',ua:'מה הדפדפן שלי'};
+const TOOL_NAMES={health:'בדיקת דומיין מלאה',dns:'DNS Lookup',compare:'השוואת Resolvers',crtsh:'תעודות ותת-דומיינים',spf:'בדיקת SPF',spfgen:'מחולל SPF',dmarc:'בדיקת DMARC',dmarcgen:'מחולל DMARC',dmarcxml:'ניתוח דוחות DMARC',dkim:'בדיקת DKIM',headers:'ניתוח כותרות',m365:'בדיקת M365',m365gen:'מחולל רשומות M365',certdec:'מפענח תעודות ו-CSR',passgen:'מחולל סיסמאות',jwt:'מפענח JWT',subnet:'מחשבון Subnet',encode:'קידוד ו-Hash',qr:'מחולל QR',ua:'מה הדפדפן שלי',myip:'מה ה-IP שלי',ssl:'בדיקת SSL',blacklist:'רשימות שחורות'};
 const catOf=t=>CATS.findIndex(c=>c.tools.includes(t));
 let currentTool=null;
 function renderNav(tool){
@@ -1566,6 +1687,7 @@ function showTool(name, domain){
   const inp=panel.querySelector('[name=domain]');
   if(inp && !domain && carry && !inp.value){ inp.value=carry; inp.dispatchEvent(new Event('input',{bubbles:true})); }
   if(name==='ua') showUA();
+  if(name==='myip') showMyIp();
   if(domain && inp){ inp.value=domain; const fm=inp.form; if(fm.dataset.run) fm.requestSubmit(); else fm.dispatchEvent(new Event('input',{bubbles:true})); }
   currentTool=name;
   document.title = TOOL_NAMES[name]+' – MiLabs Tools';
@@ -1588,15 +1710,16 @@ document.querySelectorAll('form[data-run]').forEach(f=>f.addEventListener('submi
   btn.disabled=true;
   try{
     await tools[name](f,out);
-    const d=f.elements.domain && normDomain(f.elements.domain.value, name==='dns'||name==='compare');
+    const d=f.elements.domain && normDomain(f.elements.domain.value, name==='dns'||name==='compare'||name==='ssl');
     if(d && validDomain(d)) try{ history.replaceState(null,'',`#${name}/${d}`); }catch(e){}
   }
-  catch(err){ console.error(err); out.innerHTML=errBox('אירעה שגיאה: '+(err.name==='AbortError'?'תם הזמן לתשובה מהשרת':err.message)); }
+  catch(err){ console.error(err); out.innerHTML=errBox(err.user?err.message:'אירעה שגיאה: '+(err.name==='AbortError'?'תם הזמן לתשובה מהשרת':err.message)); }
   finally{ btn.disabled=false; }
 }));
+document.querySelector('[data-myip-refresh]').addEventListener('click',showMyIp);
 document.querySelectorAll('form:not([data-run]):not(#f-certdec)').forEach(f=>f.addEventListener('submit',e=>e.preventDefault()));
 [initSpfGen,initDmarcGen,initDmarcXml,initM365Gen,initCertDec,initPassGen,initJwt,initEncode,initQr,initUA].forEach(fn=>{ try{ fn(); }catch(e){ console.error(fn.name,e); } });
-function route(){ const [tool,dom]=(location.hash.slice(1)||'health').split('/'); showTool(tool, dom?normDomain(decodeURIComponent(dom), tool==='dns'||tool==='compare'):''); }
+function route(){ const [tool,dom]=(location.hash.slice(1)||'health').split('/'); showTool(tool, dom?normDomain(decodeURIComponent(dom), tool==='dns'||tool==='compare'||tool==='ssl'):''); }
 window.addEventListener('hashchange',()=>{ const [tool]=location.hash.slice(1).split('/'); if(tool!==currentTool) route(); });
 document.getElementById('yr').textContent=new Date().getFullYear();
 $('.langsw').addEventListener('click',e=>{ e.preventDefault(); location.href=e.currentTarget.getAttribute('href')+location.hash; });

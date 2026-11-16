@@ -1,6 +1,6 @@
 # Free IT Tools by MiLabs
 
-**20 free tools for DNS, email deliverability, Microsoft 365, security and networking. Everything runs in your browser, with no sign-up and no tracking.**
+**23 free tools for DNS, email deliverability, Microsoft 365, security and networking. No sign-up, no cookies, no tracking.**
 
 🔗 **Live site:** [English](https://tools.milabs.co.il/en/) · [עברית (Hebrew)](https://tools.milabs.co.il/)
 🏢 **Built by:** [MiLabs](https://milabs.co.il), IT, security and automation services
@@ -29,6 +29,7 @@
 | **DMARC checker** | Parses every tag, explains it, and handles policy inherited from the organizational domain and external report authorization. |
 | **DMARC generator** | Guided record builder with recommendations for rolling out from `none` to `reject`. |
 | **DMARC report analyzer** | Drop aggregate reports (`.xml`, `.gz` or `.zip`) and see who sends mail as your domain, with pass rates per source IP and reverse DNS. |
+| **Blacklist check** | Checks a mail server's IP – or a domain's MX servers – against public DNS blocklists (SpamCop, UCEPROTECT, PSBL, Mailspike, DroneBL, NiX Spam, s5h.net), with links to Spamhaus and Barracuda's own lookups. |
 | **DKIM checker** | Checks a specific selector, or scans about 30 common ones. Reports the RSA key length. |
 | **Email header analyzer** | SPF/DKIM/DMARC results, the hop-by-hop route with delays, and Microsoft SCL / spam headers. |
 
@@ -41,6 +42,7 @@
 ### Security
 | Tool | What it does |
 |---|---|
+| **SSL certificate check** | Connects to a website or VPN portal and reports expiry, chain trust, hostname match, supported TLS versions (1.0–1.3) and key size. |
 | **Certificate & CSR decoder** | Paste PEM to see the subject, SANs, issuer, validity, key type and size, key usage / EKU, and SHA-1 and SHA-256 fingerprints. Refuses to process private keys. |
 | **Password generator** | Uses `crypto.getRandomValues`, can exclude ambiguous characters, and shows an entropy meter. |
 | **JWT decoder** | Decodes the header and payload, shows expiry, and explains Microsoft Entra ID claims (`tid`, `oid`, `scp`, `roles`, `amr`, …). |
@@ -48,6 +50,7 @@
 ### Network & utilities
 | Tool | What it does |
 |---|---|
+| **What's my IP** | Your public IP address and its reverse DNS. |
 | **Subnet calculator** | IPv4 (CIDR or dotted mask) and IPv6: network, broadcast, host range, wildcard, binary view and a subnetting table. |
 | **Encode & hash** | Base64, Base64URL, URL encoding, Hex, MD5, SHA-1, SHA-256 and SHA-512, all UTF-8 safe. |
 | **QR generator** | URL / text, Wi-Fi network and email codes. Download as PNG or SVG. |
@@ -68,11 +71,12 @@
 - **Certificate search** queries [crt.sh](https://crt.sh) directly from your browser.
 - **The Microsoft 365 tenant lookup** reads Microsoft's public OpenID configuration endpoint.
 - **Fonts** (Heebo, JetBrains Mono) are served from the site itself – no Google Fonts or other third-party requests.
+- **Three tools go through our server** (SSL check, blacklist check, What's my IP): it receives the domain or IP you entered and sees your IP address. Nothing is stored; a per-IP request counter is kept in memory for one minute to prevent abuse. Blocklists and checked servers see our server's address, not yours.
 - **Everything else stays on your device:** header analysis, DMARC reports, certificate and JWT decoding, passwords, hashing and QR codes. You can confirm this by reading the source.
 
 ## How it works
 
-Each language is a single, dependency-free HTML file (`index.html` for Hebrew, `en/index.html` for English): plain HTML, CSS and JavaScript, with no build step. DNS lookups use the [DNS-over-HTTPS JSON API](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/). Certificates are parsed with a small built-in ASN.1/X.509 decoder.
+Each language is a single, dependency-free HTML file (`index.html` for Hebrew, `en/index.html` for English): plain HTML, CSS and JavaScript, with no build step. The three server-side tools call a small serverless function on Zoho Catalyst (not included in this repository); the rest of the site works without it. DNS lookups use the [DNS-over-HTTPS JSON API](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/). Certificates are parsed with a small built-in ASN.1/X.509 decoder.
 
 ### Run it yourself
 
@@ -87,7 +91,7 @@ Serve it over HTTP or HTTPS. Opening the file directly from disk works for the o
 
 ## Accessibility
 
-The site targets WCAG 2.1 level AA (Israeli standard IS 5568). Every tool, in both languages, passes automated axe-core checks with results rendered, and the whole site can be used with a keyboard alone. See the [accessibility statement](https://tools.milabs.co.il/en/accessibility.html).
+The site targets WCAG 2.1 level AA (Israeli standard IS 5568). All 23 tools, in both languages, passes automated axe-core checks with results rendered, and the whole site can be used with a keyboard alone. See the [accessibility statement](https://tools.milabs.co.il/en/accessibility.html).
 
 ## Deep links
 

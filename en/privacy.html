@@ -53,6 +53,11 @@
   </ul>
   <p>These requests don’t pass through us, and we have no access to them.</p>
 
+  <h2>Tools that go through our server</h2>
+  <p>Three tools need a server: "What’s my IP", the SSL check and the blacklist check. When you use them, your browser sends our server (on Zoho Catalyst) the domain or IP address you entered, and the server also sees your IP address. In "What’s my IP" the address is shown back to you.</p>
+  <p>Our server connects to the server you asked to check (SSL check), or sends DNS queries to the SpamCop, UCEPROTECT, PSBL, Mailspike, DroneBL, NiX Spam and s5h.net blocklists. Those services see our server’s address, not yours.</p>
+  <p>We don’t store the requests or the results. To prevent abuse, the server counts in memory how many requests each IP address made in the last minute, and the count is discarded after a minute.</p>
+
   <h2>Hosting</h2>
   <p>The site is hosted on Zoho Catalyst. As with any website, the infrastructure providers (hosting and DNS) may log technical data about requests to the site, such as IP address, date and time, and the page loaded, for operations and security. We don’t use this data to identify visitors.</p>
   <p>The site’s fonts are hosted on the site itself, so there are no requests to Google Fonts or any other font service.</p>
