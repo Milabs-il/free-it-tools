@@ -2,7 +2,7 @@
 
 **20 free tools for DNS, email deliverability, Microsoft 365, security and networking. Everything runs in your browser, with no sign-up and no tracking.**
 
-🔗 **Live site:** [English](https://milabs-tools-qfoxksbr.onslate.com/en/) · [עברית (Hebrew)](https://milabs-tools-qfoxksbr.onslate.com/)
+🔗 **Live site:** [English](https://tools.milabs.co.il/en/) · [עברית (Hebrew)](https://tools.milabs.co.il/)
 🏢 **Built by:** [MiLabs](https://milabs.co.il), IT, security and automation services
 
 ![MiLabs Tools](docs/screenshots/home.png)
@@ -90,9 +90,9 @@ Serve it over HTTP or HTTPS. Opening the file directly from disk works for the o
 Each tool has its own URL, and domain-based tools accept a domain:
 
 ```
-https://milabs-tools-qfoxksbr.onslate.com/en/#health/example.com
-https://milabs-tools-qfoxksbr.onslate.com/en/#spf/example.com
-https://milabs-tools-qfoxksbr.onslate.com/en/#subnet
+https://tools.milabs.co.il/en/#health/example.com
+https://tools.milabs.co.il/en/#spf/example.com
+https://tools.milabs.co.il/en/#subnet
 ```
 
 ## License
