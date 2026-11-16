@@ -5,19 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MiLabs Tools – Free DNS, Email & IT Tools</title>
 <meta name="description" content="Free tools for DNS, SPF, DKIM, DMARC, Microsoft 365, certificates and email header analysis – by MiLabs">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MiLabs Tools">
+<meta property="og:title" content="Free IT tools: domain, email and security">
+<meta property="og:description" content="20 free tools for DNS, SPF, DKIM, DMARC, Microsoft 365, certificates and networking. No sign-up, runs in your browser.">
+<meta property="og:url" content="https://tools.milabs.co.il/en/">
+<meta property="og:image" content="https://tools.milabs.co.il/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#312e81">
 <link rel="canonical" href="https://tools.milabs.co.il/en/">
 <link rel="alternate" hreflang="he" href="https://tools.milabs.co.il/">
 <link rel="alternate" hreflang="en" href="https://tools.milabs.co.il/en/">
 <link rel="alternate" hreflang="x-default" href="https://tools.milabs.co.il/en/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* Fonts: Heebo & JetBrains Mono, SIL Open Font License 1.1 (see fonts/) */
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(../fonts/heebo-hebrew-wght-normal.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(../fonts/heebo-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(../fonts/heebo-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(../fonts/jetbrains-mono-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(../fonts/jetbrains-mono-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 :root{
   --bg:#f5f7fb; --card:#fff; --ink:#152033; --muted:#5d6b82; --line:#e3e8f0;
   --accent:#4f46e5; --accent2:#06b6d4; --accent-soft:#eef0ff;
-  --ok:#0f9d58; --ok-soft:#e7f6ee; --warn:#c27a00; --warn-soft:#fff5e0;
-  --bad:#d93025; --bad-soft:#fdecea; --info:#2563eb; --info-soft:#e8f0fe;
+  --ok:#0a7340; --ok-soft:#e7f6ee; --warn:#8f5600; --warn-soft:#fff5e0;
+  --bad:#b3261e; --bad-soft:#fdecea; --info:#1d4ed8; --info-soft:#e8f0fe;
   --radius:14px; --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -38,14 +53,14 @@ main{margin-top:-46px;padding:0 16px 40px}
 .tabs{display:flex;gap:6px;overflow-x:auto;background:var(--card);border-radius:var(--radius);padding:6px;box-shadow:0 6px 24px rgba(20,30,60,.08);scrollbar-width:thin}
 .tab{flex:none;border:0;background:transparent;font:inherit;font-weight:500;color:var(--muted);padding:10px 14px;border-radius:10px;cursor:pointer;white-space:nowrap}
 .tab:hover{background:#f1f3f9;color:var(--ink)}
-.tab[aria-selected=true]{background:var(--accent);color:#fff}
+.tab[aria-pressed=true]{background:var(--accent);color:#fff}
 .panel{background:var(--card);border-radius:var(--radius);margin-top:14px;padding:22px;box-shadow:0 6px 24px rgba(20,30,60,.06)}
 .panel h2{margin:0 0 4px;font-size:21px}
 .panel .lead{margin:0 0 16px;color:var(--muted);font-size:15px}
 form.q{display:flex;gap:8px;flex-wrap:wrap}
 form.q input[type=text],form.q select,textarea{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
 form.q input[type=text]{flex:1 1 260px;min-width:0;font-family:var(--mono);font-size:15px}
-form.q input:focus,form.q select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+form.q input:focus,form.q select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #a5b4fc}
 textarea{width:100%;min-height:200px;font-family:var(--mono);font-size:13px;direction:ltr;text-align:left}
 .btn{font:inherit;font-weight:700;border:0;border-radius:10px;padding:11px 20px;background:var(--accent);color:#fff;cursor:pointer}
 .btn:hover{filter:brightness(1.08)}
@@ -93,6 +108,7 @@ h3{font-size:16px;margin:22px 0 10px}
 .toolbar{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 16px 30px}
 footer .privacy{max-width:680px;margin:0 auto 8px}
+.footlinks{margin-bottom:6px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .cats{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
 .cat{border:1px solid rgba(255,255,255,.25);font:inherit;font-weight:700;font-size:14px;padding:7px 15px;border-radius:99px;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
@@ -104,14 +120,14 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 .field>label{font-size:13px;font-weight:700;color:var(--muted)}
 .field input[type=text],.field select{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);min-width:0}
 .field input[type=text][dir=ltr]{font-family:var(--mono);font-size:14px}
-.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #a5b4fc}
 .field input[type=range]{accent-color:var(--accent);width:100%}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{display:inline-flex;align-items:center;cursor:pointer;user-select:none}
 .chip input{position:absolute;opacity:0;pointer-events:none}
 .chip span{border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:14px;background:#fff;transition:.12s}
 .chip input:checked+span{background:var(--accent-soft);border-color:var(--accent);color:#3730a3;font-weight:700}
-.chip input:focus-visible+span{box-shadow:0 0 0 3px var(--accent-soft)}
+.chip input:focus-visible+span{box-shadow:0 0 0 3px #a5b4fc}
 .chip code{font-size:12px}
 .copyrow{display:flex;gap:8px;align-items:stretch}
 .copyrow .record{flex:1;min-width:0}
@@ -131,11 +147,18 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 .qrbox svg{width:100%;max-width:260px;height:auto}
 .out2{margin-top:14px}
 @media (max-width:760px){.qrgrid{grid-template-columns:1fr}}
+:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;z-index:10;background:#fff;color:var(--ink);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.drop:focus-within{outline:3px solid #f59e0b;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}*{transition:none!important}}
 @media (max-width:600px){header.top h1{font-size:24px}.panel{padding:16px}}
 </style>
 </head>
 <body>
 <header class="top">
+  <a class="skip" href="#" data-skip>Skip to content</a>
+  <div id="sr-status" class="sr" role="status" aria-live="polite"></div>
   <div class="wrap">
     <div class="brand">
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#fff" fill-opacity=".14"/><path d="M8 24V10l5 8 4-8 4 8 5-8v14" fill="none" stroke="#67e8f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -148,11 +171,11 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </div>
 </header>
 
-<main class="wrap">
-  <nav class="tabs" role="tablist" aria-label="Tools"></nav>
+<main class="wrap" id="main">
+  <nav class="tabs" aria-label="Tools"></nav>
 
   <!-- HEALTH -->
-  <section class="panel" data-panel="health" role="tabpanel">
+  <section class="panel" data-panel="health">
     <h2>Full domain check</h2>
     <p class="lead">One check that runs everything that matters: DNS, MX, SPF, DMARC, DKIM, DNSSEC, CAA, MTA-STS and more.</p>
     <form class="q" data-run="health">
@@ -163,7 +186,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DNS -->
-  <section class="panel" data-panel="dns" role="tabpanel" hidden>
+  <section class="panel" data-panel="dns" hidden>
     <h2>DNS Lookup</h2>
     <p class="lead">Look up DNS records of any type. Enter an IP address to get its PTR (reverse DNS) record.</p>
     <form class="q" data-run="dns">
@@ -180,7 +203,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SPF -->
-  <section class="panel" data-panel="spf" role="tabpanel" hidden>
+  <section class="panel" data-panel="spf" hidden>
     <h2>SPF check</h2>
     <p class="lead">Analyzes the SPF record: follows every include, counts DNS lookups (the limit is 10) and catches common mistakes.</p>
     <form class="q" data-run="spf">
@@ -191,7 +214,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DMARC -->
-  <section class="panel" data-panel="dmarc" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarc" hidden>
     <h2>DMARC check</h2>
     <p class="lead">Breaks down the DMARC record, explains each tag and recommends how to improve spoofing protection.</p>
     <form class="q" data-run="dmarc">
@@ -202,7 +225,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DKIM -->
-  <section class="panel" data-panel="dkim" role="tabpanel" hidden>
+  <section class="panel" data-panel="dkim" hidden>
     <h2>DKIM check</h2>
     <p class="lead">Checks a DKIM key by selector. Leave the selector empty to scan common selectors (Microsoft 365, Google, Zoho and more).</p>
     <form class="q" data-run="dkim">
@@ -214,7 +237,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- M365 -->
-  <section class="panel" data-panel="m365" role="tabpanel" hidden>
+  <section class="panel" data-panel="m365" hidden>
     <h2>Microsoft 365 check</h2>
     <p class="lead">Checks whether the domain is set up correctly for Microsoft 365: tenant ID, MX, Autodiscover, SPF, DKIM, Intune and Teams.</p>
     <form class="q" data-run="m365">
@@ -225,7 +248,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- COMPARE -->
-  <section class="panel" data-panel="compare" role="tabpanel" hidden>
+  <section class="panel" data-panel="compare" hidden>
     <h2>Resolver comparison</h2>
     <p class="lead">Runs the same query against several public DNS resolvers. Useful to see whether a DNS change has propagated, and how much TTL is left.</p>
     <form class="q" data-run="compare">
@@ -239,7 +262,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- HEADERS -->
-  <section class="panel" data-panel="headers" role="tabpanel" hidden>
+  <section class="panel" data-panel="headers" hidden>
     <h2>Email header analyzer</h2>
     <p class="lead">Paste a message’s full headers (Message headers / Show original). The analysis runs only in your browser – nothing is sent to any server.</p>
     <form data-run="headers">
@@ -250,7 +273,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- CRT.SH -->
-  <section class="panel" data-panel="crtsh" role="tabpanel" hidden>
+  <section class="panel" data-panel="crtsh" hidden>
     <h2>SSL certificates & subdomains</h2>
     <p class="lead">Searches every SSL certificate issued for the domain (Certificate Transparency). Reveals subdomains, including forgotten ones, and certificates that are about to expire.</p>
     <form class="q" data-run="crtsh">
@@ -262,43 +285,43 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SPF GENERATOR -->
-  <section class="panel" data-panel="spfgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="spfgen" hidden>
     <h2>SPF generator</h2>
     <p class="lead">Pick the services that send email for your domain and get an SPF record ready to copy.</p>
     <form class="gen" id="f-spfgen">
-      <div class="field"><label>Domain</label><input type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-domain">Domain</label><input id="spfgen-domain" type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
       <div class="field wide"><label>Services that send email for the domain</label><div class="chips" id="spf-providers"></div></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="mx"><span>The domain’s MX servers <code>mx</code></span></label>
         <label class="chip"><input type="checkbox" name="a"><span>The website’s server <code>a</code></span></label>
       </div></div>
-      <div class="field"><label>Additional IP addresses</label><input type="text" name="ips" dir="ltr" placeholder="203.0.113.10, 198.51.100.0/24" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>Additional includes</label><input type="text" name="includes" dir="ltr" placeholder="_spf.example.net" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>Policy for unauthorized servers</label>
-        <select name="all"><option value="~all">~all · SoftFail (recommended)</option><option value="-all">-all · Fail (strict)</option><option value="?all">‎?all · Neutral</option></select></div>
+      <div class="field"><label for="spfgen-ips">Additional IP addresses</label><input id="spfgen-ips" type="text" name="ips" dir="ltr" placeholder="203.0.113.10, 198.51.100.0/24" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-includes">Additional includes</label><input id="spfgen-includes" type="text" name="includes" dir="ltr" placeholder="_spf.example.net" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-all">Policy for unauthorized servers</label>
+        <select id="spfgen-all" name="all"><option value="~all">~all · SoftFail (recommended)</option><option value="-all">-all · Fail (strict)</option><option value="?all">‎?all · Neutral</option></select></div>
     </form>
     <div class="out" aria-live="polite"></div>
   </section>
 
   <!-- DMARC GENERATOR -->
-  <section class="panel" data-panel="dmarcgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarcgen" hidden>
     <h2>DMARC generator</h2>
     <p class="lead">Build a valid DMARC record, with an explanation of every option.</p>
     <form class="gen" id="f-dmarcgen">
-      <div class="field"><label>Domain</label><input type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>Policy (p)</label><select name="p"><option value="none">none · monitor only</option><option value="quarantine">quarantine · send to spam</option><option value="reject">reject · reject</option></select></div>
-      <div class="field"><label>Subdomain policy (sp)</label><select name="sp"><option value="">Same as the main domain</option><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
-      <div class="field"><label>Percentage of messages (pct)</label><input type="text" name="pct" dir="ltr" value="100" inputmode="numeric"></div>
-      <div class="field"><label>Aggregate report address (rua)</label><input type="text" name="rua" dir="ltr" placeholder="dmarc@example.com" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>Failure report address (ruf) · optional</label><input type="text" name="ruf" dir="ltr" placeholder="" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>DKIM alignment (adkim)</label><select name="adkim"><option value="">r · relaxed (default)</option><option value="s">s · strict</option></select></div>
-      <div class="field"><label>SPF alignment (aspf)</label><select name="aspf"><option value="">r · relaxed (default)</option><option value="s">s · strict</option></select></div>
+      <div class="field"><label for="dmarcgen-domain">Domain</label><input id="dmarcgen-domain" type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-p">Policy (p)</label><select id="dmarcgen-p" name="p"><option value="none">none · monitor only</option><option value="quarantine">quarantine · send to spam</option><option value="reject">reject · reject</option></select></div>
+      <div class="field"><label for="dmarcgen-sp">Subdomain policy (sp)</label><select id="dmarcgen-sp" name="sp"><option value="">Same as the main domain</option><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
+      <div class="field"><label for="dmarcgen-pct">Percentage of messages (pct)</label><input id="dmarcgen-pct" type="text" name="pct" dir="ltr" value="100" inputmode="numeric"></div>
+      <div class="field"><label for="dmarcgen-rua">Aggregate report address (rua)</label><input id="dmarcgen-rua" type="text" name="rua" dir="ltr" placeholder="dmarc@example.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-ruf">Failure report address (ruf) · optional</label><input id="dmarcgen-ruf" type="text" name="ruf" dir="ltr" placeholder="" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-adkim">DKIM alignment (adkim)</label><select id="dmarcgen-adkim" name="adkim"><option value="">r · relaxed (default)</option><option value="s">s · strict</option></select></div>
+      <div class="field"><label for="dmarcgen-aspf">SPF alignment (aspf)</label><select id="dmarcgen-aspf" name="aspf"><option value="">r · relaxed (default)</option><option value="s">s · strict</option></select></div>
     </form>
     <div class="out" aria-live="polite"></div>
   </section>
 
   <!-- DMARC XML -->
-  <section class="panel" data-panel="dmarcxml" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarcxml" hidden>
     <h2>DMARC report analyzer</h2>
     <p class="lead">Drop DMARC reports you received by email (.xml, .gz or .zip files) and get a clear picture: who sends mail as your domain, and what passes or fails.</p>
     <label class="drop" id="dmarc-drop">
@@ -311,12 +334,12 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- M365 GENERATOR -->
-  <section class="panel" data-panel="m365gen" role="tabpanel" hidden>
+  <section class="panel" data-panel="m365gen" hidden>
     <h2>Microsoft 365 DNS record generator</h2>
     <p class="lead">Every record you need to add at your DNS provider to connect a domain to Microsoft 365.</p>
     <form class="gen" id="f-m365gen">
-      <div class="field"><label>Domain</label><input type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>Tenant’s initial domain</label><input type="text" name="initial" dir="ltr" placeholder="contoso.onmicrosoft.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="m365gen-domain">Domain</label><input id="m365gen-domain" type="text" name="domain" dir="ltr" placeholder="example.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="m365gen-initial">Tenant’s initial domain</label><input id="m365gen-initial" type="text" name="initial" dir="ltr" placeholder="contoso.onmicrosoft.com" autocomplete="off" spellcheck="false"></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="intune" checked><span>Intune & device registration</span></label>
         <label class="chip"><input type="checkbox" name="strict"><span>Strict SPF (-all)</span></label>
@@ -326,7 +349,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- CERT DECODER -->
-  <section class="panel" data-panel="certdec" role="tabpanel" hidden>
+  <section class="panel" data-panel="certdec" hidden>
     <h2>Certificate & CSR decoder</h2>
     <p class="lead">Paste a certificate or a certificate signing request (CSR) in PEM format. Decoding happens only in your browser.</p>
     <form id="f-certdec">
@@ -337,11 +360,11 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- PASSWORD -->
-  <section class="panel" data-panel="passgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="passgen" hidden>
     <h2>Password generator</h2>
     <p class="lead">Strong random passwords, created in your browser with a cryptographic generator. Nothing is sent or stored.</p>
     <form class="gen" id="f-passgen">
-      <div class="field wide"><label>Length: <b id="pw-len-v">20</b></label><input type="range" name="len" min="8" max="64" value="20"></div>
+      <div class="field wide"><label for="passgen-len">Length: <b id="pw-len-v">20</b></label><input id="passgen-len" type="range" name="len" min="8" max="64" value="20"></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="upper" checked><span>Uppercase A-Z</span></label>
         <label class="chip"><input type="checkbox" name="lower" checked><span>Lowercase a-z</span></label>
@@ -354,7 +377,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- JWT -->
-  <section class="panel" data-panel="jwt" role="tabpanel" hidden>
+  <section class="panel" data-panel="jwt" hidden>
     <h2>JWT decoder</h2>
     <p class="lead">Paste a token (for example a Microsoft Entra access token) to see its contents, when it expires and what each claim means. Decoding is local only.</p>
     <form id="f-jwt"><textarea name="token" spellcheck="false" placeholder="eyJhbGciOi..." aria-label="JWT" style="min-height:120px"></textarea></form>
@@ -362,7 +385,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SUBNET -->
-  <section class="panel" data-panel="subnet" role="tabpanel" hidden>
+  <section class="panel" data-panel="subnet" hidden>
     <h2>Subnet calculator</h2>
     <p class="lead">Calculates network range, broadcast, address count and mask. Supports IPv4 and IPv6.</p>
     <form class="q" data-run="subnet">
@@ -373,7 +396,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- ENCODE -->
-  <section class="panel" data-panel="encode" role="tabpanel" hidden>
+  <section class="panel" data-panel="encode" hidden>
     <h2>Encode & hash</h2>
     <p class="lead">Base64, URL, Hex and hashes (MD5, SHA). Everything runs in your browser.</p>
     <form id="f-encode">
@@ -395,27 +418,27 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- QR -->
-  <section class="panel" data-panel="qr" role="tabpanel" hidden>
+  <section class="panel" data-panel="qr" hidden>
     <h2>QR generator</h2>
     <p class="lead">QR codes for a link, text, or quick connection to a Wi-Fi network.</p>
     <div class="qrgrid">
       <form class="gen" id="f-qr" style="align-content:start">
-        <div class="field wide"><label>Type</label><select name="kind"><option value="text">Link / text</option><option value="wifi">Wi-Fi network</option><option value="email">Email</option></select></div>
-        <div class="field wide" data-k="text"><label>Link or text</label><input type="text" name="text" dir="ltr" placeholder="https://milabs.co.il"></div>
-        <div class="field" data-k="wifi" hidden><label>Network name (SSID)</label><input type="text" name="ssid" dir="ltr"></div>
-        <div class="field" data-k="wifi" hidden><label>Password</label><input type="text" name="wpass" dir="ltr"></div>
-        <div class="field" data-k="wifi" hidden><label>Security</label><select name="sec"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></div>
+        <div class="field wide"><label for="qr-kind">Type</label><select id="qr-kind" name="kind"><option value="text">Link / text</option><option value="wifi">Wi-Fi network</option><option value="email">Email</option></select></div>
+        <div class="field wide" data-k="text"><label for="qr-text">Link or text</label><input id="qr-text" type="text" name="text" dir="ltr" placeholder="https://milabs.co.il"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-ssid">Network name (SSID)</label><input id="qr-ssid" type="text" name="ssid" dir="ltr"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-wpass">Password</label><input id="qr-wpass" type="text" name="wpass" dir="ltr"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-sec">Security</label><select id="qr-sec" name="sec"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></div>
         <div class="field" data-k="wifi" hidden><label>&nbsp;</label><label class="chip"><input type="checkbox" name="hidden"><span>Hidden network</span></label></div>
-        <div class="field" data-k="email" hidden><label>Address</label><input type="text" name="to" dir="ltr"></div>
-        <div class="field" data-k="email" hidden><label>Subject</label><input type="text" name="subject"></div>
-        <div class="field"><label>Error correction</label><select name="ec"><option value="M">Medium (M)</option><option value="L">Low (L)</option><option value="Q">High (Q)</option><option value="H">Very high (H)</option></select></div>
+        <div class="field" data-k="email" hidden><label for="qr-to">Address</label><input id="qr-to" type="text" name="to" dir="ltr"></div>
+        <div class="field" data-k="email" hidden><label for="qr-subject">Subject</label><input id="qr-subject" type="text" name="subject"></div>
+        <div class="field"><label for="qr-ec">Error correction</label><select id="qr-ec" name="ec"><option value="M">Medium (M)</option><option value="L">Low (L)</option><option value="Q">High (Q)</option><option value="H">Very high (H)</option></select></div>
       </form>
       <div class="qrbox"><div id="qr-out" class="hint">Enter content to create a code</div><div class="toolbar" style="justify-content:center"><button type="button" class="btn ghost" id="qr-png" disabled>Download PNG</button><button type="button" class="btn ghost" id="qr-svg" disabled>Download SVG</button></div></div>
     </div>
   </section>
 
   <!-- UA -->
-  <section class="panel" data-panel="ua" role="tabpanel" hidden>
+  <section class="panel" data-panel="ua" hidden>
     <h2>What’s my browser</h2>
     <p class="lead">Your browser, operating system and screen details. Handy when tech support asks “Which browser are you using?”</p>
     <div class="out" aria-live="polite"></div>
@@ -426,8 +449,9 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 </main>
 
 <footer>
-  <p class="privacy">DNS queries go straight from your browser to public DNS-over-HTTPS resolvers (Cloudflare and Google), and certificate searches go to crt.sh. Everything else – header and report analysis, certificate and token decoding, passwords and encoding – runs only in your browser and is never sent anywhere.</p>
-  <div>© <span id="yr"></span> <a href="https://milabs.co.il">MiLabs</a> · IT, security and automation services</div>
+  <p class="privacy">DNS queries go straight from your browser to public DNS-over-HTTPS resolvers (Cloudflare and Google), and certificate searches go to crt.sh. Everything else – header and report analysis, certificate and token decoding, passwords and encoding – runs only in your browser and is never sent anywhere. The site uses no cookies or trackers.</p>
+  <nav class="footlinks" aria-label="Legal information"><a href="privacy.html">Privacy policy</a> · <a href="accessibility.html">Accessibility statement</a> · <a href="terms.html">Terms of use</a> · <a href="https://github.com/Milabs-il/free-it-tools">Source code</a></nav>
+  <div>© <span id="yr"></span> G2000 · <a href="https://milabs.co.il">MiLabs</a> · IT, security and automation services</div>
 </footer>
 
 <script>/* qrcode-generator 1.4.4 · (c) Kazuhiko Arase · MIT License */
@@ -545,9 +569,10 @@ function loading(out, msg='Checking...'){ out.innerHTML=`<div class="loading"><d
 function errBox(msg){ return `<div class="err">${esc(msg)}</div>`; }
 function rec(s){ return `<div class="record">${esc(s)}</div>`; }
 const ICON = {ok:'✓',warn:'!',bad:'✕',info:'i'};
+const SRL = {ok:'OK',warn:'Warning',bad:'Error',info:'Note'};
 function check(level,title,desc='',extra=''){ return {level,title,desc,extra}; }
 function renderChecks(list){
-  return `<ul class="checks">${list.map(c=>`<li class="check ${c.level}"><div class="ic">${ICON[c.level]}</div><div style="min-width:0;flex:1"><div class="t">${c.title}</div>${c.desc?`<div class="d">${c.desc}</div>`:''}${c.extra||''}</div></li>`).join('')}</ul>`;
+  return `<ul class="checks">${list.map(c=>`<li class="check ${c.level}"><div class="ic" aria-hidden="true">${ICON[c.level]}</div><div style="min-width:0;flex:1"><div class="t"><span class="sr">${SRL[c.level]}: </span>${c.title}</div>${c.desc?`<div class="d">${c.desc}</div>`:''}${c.extra||''}</div></li>`).join('')}</ul>`;
 }
 function scoreBox(list, label){
   const n = l=>list.filter(c=>c.level===l).length;
@@ -558,7 +583,7 @@ function scoreBox(list, label){
   <div class="pills"><span class="pill ok">${n('ok')} OK</span><span class="pill warn">${n('warn')} warnings</span><span class="pill bad">${n('bad')} errors</span>${n('info')?`<span class="pill info">${n('info')} info</span>`:''}</div></div>`;
 }
 function table(headers, rows){
-  return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+  return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
 }
 function fmtTTL(s){ s=+s; if(s<60) return s+'s'; if(s<3600) return Math.round(s/60)+'m'; if(s<86400) return (s/3600).toFixed(s%3600?1:0)+'h'; return (s/86400).toFixed(s%86400?1:0)+'d'; }
 
@@ -1471,7 +1496,7 @@ function initQr(){
       qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];
       const q=qrcode(0,el.ec.value); q.addData(data,'Byte'); q.make();
       lastSvg=q.createSvgTag({cellSize:8,margin:4,scalable:true});
-      box.innerHTML=lastSvg; png.disabled=svgB.disabled=false;
+      box.innerHTML=lastSvg; const sv=box.querySelector('svg'); sv.setAttribute('role','img'); sv.setAttribute('aria-label','QR code'); png.disabled=svgB.disabled=false;
     }catch(e){ box.innerHTML=errBox('The content is too long for a QR code'); png.disabled=svgB.disabled=true; lastSvg=''; }
   };
   const dl=(href,name)=>{ const a=document.createElement('a'); a.href=href; a.download=name; document.body.appendChild(a); a.click(); a.remove(); };
@@ -1529,7 +1554,7 @@ let currentTool=null;
 function renderNav(tool){
   const ci=catOf(tool);
   $('.cats').innerHTML=CATS.map((c,i)=>`<button type="button" class="cat" data-cat="${i}" aria-pressed="${i===ci}">${esc(c.name)}</button>`).join('');
-  $('.tabs').innerHTML=CATS[ci].tools.map(t=>`<button type="button" class="tab" role="tab" data-tool="${t}" aria-selected="${t===tool}">${esc(TOOL_NAMES[t])}</button>`).join('');
+  $('.tabs').innerHTML=CATS[ci].tools.map(t=>`<button type="button" class="tab" data-tool="${t}" aria-pressed="${t===tool}">${esc(TOOL_NAMES[t])}</button>`).join('');
 }
 function currentDomain(){ return document.querySelector('[data-panel]:not([hidden]) [name=domain]')?.value||''; }
 function showTool(name, domain){
@@ -1543,14 +1568,17 @@ function showTool(name, domain){
   if(name==='ua') showUA();
   if(domain && inp){ inp.value=domain; const fm=inp.form; if(fm.dataset.run) fm.requestSubmit(); else fm.dispatchEvent(new Event('input',{bubbles:true})); }
   currentTool=name;
+  document.title = TOOL_NAMES[name]+' – MiLabs Tools';
 }
 function go(name){ try{ history.replaceState(null,'','#'+name); }catch(e){} showTool(name); }
 document.addEventListener('click',e=>{
-  const c=e.target.closest('.cat'); if(c){ go(CATS[+c.dataset.cat].tools[0]); return; }
-  const t=e.target.closest('.tab'); if(t){ go(t.dataset.tool); return; }
+  // the nav is re-rendered on every switch, so put focus back on the matching new button (keyboard users)
+  const c=e.target.closest('.cat'); if(c){ const i=c.dataset.cat; go(CATS[+i].tools[0]); $(`.cat[data-cat="${i}"]`).focus(); return; }
+  const t=e.target.closest('.tab'); if(t){ const id=t.dataset.tool; go(id); $(`.tab[data-tool="${id}"]`).focus(); return; }
   const cp=e.target.closest('[data-copy]');
-  if(cp){ const txt=cp.dataset.copy, orig=cp.textContent; const done=()=>{ cp.textContent='Copied ✓'; setTimeout(()=>cp.textContent=orig,1500); };
+  if(cp){ const txt=cp.dataset.copy, orig=cp.textContent; const done=()=>{ cp.textContent='Copied ✓'; $('#sr-status').textContent='Copied to clipboard'; setTimeout(()=>{ cp.textContent=orig; $('#sr-status').textContent=''; },1500); };
     if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done).catch(()=>{}); return; }
+  if(e.target.closest('[data-skip]')){ e.preventDefault(); const h=document.querySelector('[data-panel]:not([hidden]) h2'); h.setAttribute('tabindex','-1'); h.focus(); return; }
   const cl=e.target.closest('[data-clear-panel],[data-clear]');
   if(cl){ const p=cl.closest('[data-panel]'); p.querySelectorAll('textarea').forEach(x=>x.value=''); p.querySelector('.out').innerHTML=''; }
 });

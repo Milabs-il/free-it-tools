@@ -67,7 +67,7 @@
 - **DNS queries** go directly from your browser to public DNS-over-HTTPS resolvers (Cloudflare and Google, plus a few others for the resolver comparison).
 - **Certificate search** queries [crt.sh](https://crt.sh) directly from your browser.
 - **The Microsoft 365 tenant lookup** reads Microsoft's public OpenID configuration endpoint.
-- **Fonts** (Heebo, JetBrains Mono) are loaded from Google Fonts.
+- **Fonts** (Heebo, JetBrains Mono) are served from the site itself – no Google Fonts or other third-party requests.
 - **Everything else stays on your device:** header analysis, DMARC reports, certificate and JWT decoding, passwords, hashing and QR codes. You can confirm this by reading the source.
 
 ## How it works
@@ -85,6 +85,10 @@ python3 -m http.server 8080
 
 Serve it over HTTP or HTTPS. Opening the file directly from disk works for the offline tools, but some browsers block DNS requests from `file://`.
 
+## Accessibility
+
+The site targets WCAG 2.1 level AA (Israeli standard IS 5568). Every tool, in both languages, passes automated axe-core checks with results rendered, and the whole site can be used with a keyboard alone. See the [accessibility statement](https://tools.milabs.co.il/en/accessibility.html).
+
 ## Deep links
 
 Each tool has its own URL, and domain-based tools accept a domain:
@@ -99,7 +103,9 @@ https://tools.milabs.co.il/en/#subnet
 
 [GNU AGPL-3.0](LICENSE). You may use, study and modify this code. If you run a modified version as a public service, you must publish your source code under the same license.
 
-Bundled third-party code: [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) 1.4.4 by Kazuhiko Arase, under the MIT license.
+Bundled third-party code and fonts:
+- [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) 1.4.4 by Kazuhiko Arase – MIT license
+- [Heebo](https://github.com/OdedEzer/heebo) and [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) – SIL Open Font License 1.1 (see `fonts/`)
 
 ---
 

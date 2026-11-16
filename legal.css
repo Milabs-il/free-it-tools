@@ -1,0 +1,28 @@
+/* Shared styles for the legal / info pages. Fonts: SIL Open Font License 1.1 (see fonts/) */
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-hebrew-wght-normal.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#152033;--muted:#5d6b82;--line:#e3e8f0;--accent:#4f46e5}
+*{box-sizing:border-box}
+body{margin:0;font-family:Heebo,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.top{background:linear-gradient(120deg,#1e1b4b 0%,#312e81 45%,#0e7490 100%);color:#fff;padding:22px 0}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px;color:#fff;text-decoration:none}
+.brand small{font-weight:500;opacity:.75;font-size:14px}
+.langsw{color:#fff;text-decoration:none;font-weight:700;font-size:14px;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px}
+.langsw:hover{background:rgba(255,255,255,.12)}
+.skip{position:absolute;inset-inline-start:12px;top:-120px;background:#fff;color:var(--ink);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;z-index:10}
+.skip:focus{top:8px}
+main.doc{background:var(--card);border-radius:14px;margin:24px auto;padding:28px 32px;box-shadow:0 6px 24px rgba(20,30,60,.06)}
+main.doc h1{font-size:28px;margin:0 0 4px}
+main.doc h2{font-size:19px;margin:28px 0 8px}
+main.doc .updated{color:var(--muted);margin:0 0 18px;font-size:14px}
+main.doc .lead{font-size:17px;background:#eef0ff;border-radius:10px;padding:14px 16px}
+main.doc li{margin:4px 0}
+.back{display:inline-block;margin-top:24px;font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 30px}
+.footlinks{margin-bottom:6px}
+@media (max-width:600px){main.doc{padding:20px 18px;margin:16px 10px}}

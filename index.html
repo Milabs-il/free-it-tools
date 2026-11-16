@@ -5,19 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MiLabs Tools – כלי בדיקת דומיין, DNS ומייל</title>
 <meta name="description" content="כלים חינמיים לבדיקת DNS, SPF, DKIM, DMARC, Microsoft 365 וניתוח כותרות מייל – מבית MiLabs">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MiLabs Tools">
+<meta property="og:title" content="כלי IT חינמיים: דומיין, מייל ואבטחה">
+<meta property="og:description" content="20 כלים חינמיים ל-DNS, ‏SPF, ‏DKIM, ‏DMARC, ‏Microsoft 365, תעודות ורשת. בלי הרשמה, רץ בדפדפן.">
+<meta property="og:url" content="https://tools.milabs.co.il/">
+<meta property="og:image" content="https://tools.milabs.co.il/og-he.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#312e81">
 <link rel="canonical" href="https://tools.milabs.co.il/">
 <link rel="alternate" hreflang="he" href="https://tools.milabs.co.il/">
 <link rel="alternate" hreflang="en" href="https://tools.milabs.co.il/en/">
 <link rel="alternate" hreflang="x-default" href="https://tools.milabs.co.il/en/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* Fonts: Heebo & JetBrains Mono, SIL Open Font License 1.1 (see fonts/) */
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-hebrew-wght-normal.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/heebo-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/jetbrains-mono-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/jetbrains-mono-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 :root{
   --bg:#f5f7fb; --card:#fff; --ink:#152033; --muted:#5d6b82; --line:#e3e8f0;
   --accent:#4f46e5; --accent2:#06b6d4; --accent-soft:#eef0ff;
-  --ok:#0f9d58; --ok-soft:#e7f6ee; --warn:#c27a00; --warn-soft:#fff5e0;
-  --bad:#d93025; --bad-soft:#fdecea; --info:#2563eb; --info-soft:#e8f0fe;
+  --ok:#0a7340; --ok-soft:#e7f6ee; --warn:#8f5600; --warn-soft:#fff5e0;
+  --bad:#b3261e; --bad-soft:#fdecea; --info:#1d4ed8; --info-soft:#e8f0fe;
   --radius:14px; --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -38,14 +53,14 @@ main{margin-top:-46px;padding:0 16px 40px}
 .tabs{display:flex;gap:6px;overflow-x:auto;background:var(--card);border-radius:var(--radius);padding:6px;box-shadow:0 6px 24px rgba(20,30,60,.08);scrollbar-width:thin}
 .tab{flex:none;border:0;background:transparent;font:inherit;font-weight:500;color:var(--muted);padding:10px 14px;border-radius:10px;cursor:pointer;white-space:nowrap}
 .tab:hover{background:#f1f3f9;color:var(--ink)}
-.tab[aria-selected=true]{background:var(--accent);color:#fff}
+.tab[aria-pressed=true]{background:var(--accent);color:#fff}
 .panel{background:var(--card);border-radius:var(--radius);margin-top:14px;padding:22px;box-shadow:0 6px 24px rgba(20,30,60,.06)}
 .panel h2{margin:0 0 4px;font-size:21px}
 .panel .lead{margin:0 0 16px;color:var(--muted);font-size:15px}
 form.q{display:flex;gap:8px;flex-wrap:wrap}
 form.q input[type=text],form.q select,textarea{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
 form.q input[type=text]{flex:1 1 260px;min-width:0;font-family:var(--mono);font-size:15px}
-form.q input:focus,form.q select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+form.q input:focus,form.q select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #a5b4fc}
 textarea{width:100%;min-height:200px;font-family:var(--mono);font-size:13px;direction:ltr;text-align:left}
 .btn{font:inherit;font-weight:700;border:0;border-radius:10px;padding:11px 20px;background:var(--accent);color:#fff;cursor:pointer}
 .btn:hover{filter:brightness(1.08)}
@@ -93,6 +108,7 @@ h3{font-size:16px;margin:22px 0 10px}
 .toolbar{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 16px 30px}
 footer .privacy{max-width:680px;margin:0 auto 8px}
+.footlinks{margin-bottom:6px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .cats{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
 .cat{border:1px solid rgba(255,255,255,.25);font:inherit;font-weight:700;font-size:14px;padding:7px 15px;border-radius:99px;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
@@ -104,14 +120,14 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 .field>label{font-size:13px;font-weight:700;color:var(--muted)}
 .field input[type=text],.field select{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);min-width:0}
 .field input[type=text][dir=ltr]{font-family:var(--mono);font-size:14px}
-.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #a5b4fc}
 .field input[type=range]{accent-color:var(--accent);width:100%}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{display:inline-flex;align-items:center;cursor:pointer;user-select:none}
 .chip input{position:absolute;opacity:0;pointer-events:none}
 .chip span{border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:14px;background:#fff;transition:.12s}
 .chip input:checked+span{background:var(--accent-soft);border-color:var(--accent);color:#3730a3;font-weight:700}
-.chip input:focus-visible+span{box-shadow:0 0 0 3px var(--accent-soft)}
+.chip input:focus-visible+span{box-shadow:0 0 0 3px #a5b4fc}
 .chip code{font-size:12px}
 .copyrow{display:flex;gap:8px;align-items:stretch}
 .copyrow .record{flex:1;min-width:0}
@@ -131,11 +147,18 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 .qrbox svg{width:100%;max-width:260px;height:auto}
 .out2{margin-top:14px}
 @media (max-width:760px){.qrgrid{grid-template-columns:1fr}}
+:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;z-index:10;background:#fff;color:var(--ink);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.drop:focus-within{outline:3px solid #f59e0b;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}*{transition:none!important}}
 @media (max-width:600px){header.top h1{font-size:24px}.panel{padding:16px}}
 </style>
 </head>
 <body>
 <header class="top">
+  <a class="skip" href="#" data-skip>דלג לתוכן</a>
+  <div id="sr-status" class="sr" role="status" aria-live="polite"></div>
   <div class="wrap">
     <div class="brand">
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#fff" fill-opacity=".14"/><path d="M8 24V10l5 8 4-8 4 8 5-8v14" fill="none" stroke="#67e8f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -148,11 +171,11 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </div>
 </header>
 
-<main class="wrap">
-  <nav class="tabs" role="tablist" aria-label="כלים"></nav>
+<main class="wrap" id="main">
+  <nav class="tabs" aria-label="כלים"></nav>
 
   <!-- HEALTH -->
-  <section class="panel" data-panel="health" role="tabpanel">
+  <section class="panel" data-panel="health">
     <h2>בדיקת דומיין מלאה</h2>
     <p class="lead">בדיקה אחת שמריצה את כל מה שחשוב: DNS, ‏MX, ‏SPF, ‏DMARC, ‏DKIM, ‏DNSSEC, ‏CAA, ‏MTA-STS ועוד.</p>
     <form class="q" data-run="health">
@@ -163,7 +186,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DNS -->
-  <section class="panel" data-panel="dns" role="tabpanel" hidden>
+  <section class="panel" data-panel="dns" hidden>
     <h2>DNS Lookup</h2>
     <p class="lead">שליפת רשומות DNS מכל סוג. הזינו כתובת IP כדי לקבל רשומת PTR (Reverse DNS).</p>
     <form class="q" data-run="dns">
@@ -180,7 +203,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SPF -->
-  <section class="panel" data-panel="spf" role="tabpanel" hidden>
+  <section class="panel" data-panel="spf" hidden>
     <h2>בדיקת SPF</h2>
     <p class="lead">ניתוח רשומת SPF כולל מעבר על כל ה-include, ספירת DNS lookups (מגבלה של 10) וזיהוי טעויות נפוצות.</p>
     <form class="q" data-run="spf">
@@ -191,7 +214,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DMARC -->
-  <section class="panel" data-panel="dmarc" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarc" hidden>
     <h2>בדיקת DMARC</h2>
     <p class="lead">פירוק רשומת DMARC, הסבר על כל תגית והמלצות לשיפור ההגנה מפני התחזות.</p>
     <form class="q" data-run="dmarc">
@@ -202,7 +225,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- DKIM -->
-  <section class="panel" data-panel="dkim" role="tabpanel" hidden>
+  <section class="panel" data-panel="dkim" hidden>
     <h2>בדיקת DKIM</h2>
     <p class="lead">בדיקת מפתח DKIM לפי selector. השאירו את שדה ה-selector ריק כדי לסרוק selectors נפוצים (Microsoft 365, ‏Google, ‏Zoho ועוד).</p>
     <form class="q" data-run="dkim">
@@ -214,7 +237,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- M365 -->
-  <section class="panel" data-panel="m365" role="tabpanel" hidden>
+  <section class="panel" data-panel="m365" hidden>
     <h2>בדיקת Microsoft 365</h2>
     <p class="lead">בודק אם הדומיין מוגדר נכון ל-Microsoft 365: ‏Tenant ID, ‏MX, ‏Autodiscover, ‏SPF, ‏DKIM, ‏Intune ו-Teams.</p>
     <form class="q" data-run="m365">
@@ -225,7 +248,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- COMPARE -->
-  <section class="panel" data-panel="compare" role="tabpanel" hidden>
+  <section class="panel" data-panel="compare" hidden>
     <h2>השוואת Resolvers</h2>
     <p class="lead">מריץ את אותה שאילתה מול כמה שרתי DNS ציבוריים. שימושי כדי לראות אם שינוי DNS כבר התעדכן, ומה ה-TTL שנשאר.</p>
     <form class="q" data-run="compare">
@@ -239,7 +262,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- HEADERS -->
-  <section class="panel" data-panel="headers" role="tabpanel" hidden>
+  <section class="panel" data-panel="headers" hidden>
     <h2>ניתוח כותרות מייל</h2>
     <p class="lead">הדביקו את הכותרות המלאות של הודעה (Message headers / Show original). הניתוח מתבצע בדפדפן בלבד – שום מידע לא נשלח לשום שרת.</p>
     <form data-run="headers">
@@ -250,7 +273,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- CRT.SH -->
-  <section class="panel" data-panel="crtsh" role="tabpanel" hidden>
+  <section class="panel" data-panel="crtsh" hidden>
     <h2>תעודות SSL ותת-דומיינים</h2>
     <p class="lead">חיפוש בכל תעודות ה-SSL שהונפקו לדומיין (Certificate Transparency). חושף תת-דומיינים, כולל כאלה שנשכחו, ותעודות שעומדות לפוג.</p>
     <form class="q" data-run="crtsh">
@@ -262,43 +285,43 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SPF GENERATOR -->
-  <section class="panel" data-panel="spfgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="spfgen" hidden>
     <h2>מחולל SPF</h2>
     <p class="lead">בחרו את השירותים ששולחים מייל בשם הדומיין, וקבלו רשומת SPF מוכנה להעתקה.</p>
     <form class="gen" id="f-spfgen">
-      <div class="field"><label>דומיין</label><input type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-domain">דומיין</label><input id="spfgen-domain" type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
       <div class="field wide"><label>שירותים ששולחים מייל בשם הדומיין</label><div class="chips" id="spf-providers"></div></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="mx"><span>שרתי ה-MX של הדומיין <code>mx</code></span></label>
         <label class="chip"><input type="checkbox" name="a"><span>שרת האתר <code>a</code></span></label>
       </div></div>
-      <div class="field"><label>כתובות IP נוספות</label><input type="text" name="ips" dir="ltr" placeholder="203.0.113.10, 198.51.100.0/24" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>include נוספים</label><input type="text" name="includes" dir="ltr" placeholder="_spf.example.net" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>מדיניות לשרתים לא מורשים</label>
-        <select name="all"><option value="~all">‎~all · SoftFail (מומלץ)</option><option value="-all">‎-all · Fail (מחמיר)</option><option value="?all">‎?all · Neutral</option></select></div>
+      <div class="field"><label for="spfgen-ips">כתובות IP נוספות</label><input id="spfgen-ips" type="text" name="ips" dir="ltr" placeholder="203.0.113.10, 198.51.100.0/24" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-includes">include נוספים</label><input id="spfgen-includes" type="text" name="includes" dir="ltr" placeholder="_spf.example.net" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="spfgen-all">מדיניות לשרתים לא מורשים</label>
+        <select id="spfgen-all" name="all"><option value="~all">‎~all · SoftFail (מומלץ)</option><option value="-all">‎-all · Fail (מחמיר)</option><option value="?all">‎?all · Neutral</option></select></div>
     </form>
     <div class="out" aria-live="polite"></div>
   </section>
 
   <!-- DMARC GENERATOR -->
-  <section class="panel" data-panel="dmarcgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarcgen" hidden>
     <h2>מחולל DMARC</h2>
     <p class="lead">בניית רשומת DMARC תקינה, עם הסבר על כל אפשרות.</p>
     <form class="gen" id="f-dmarcgen">
-      <div class="field"><label>דומיין</label><input type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>מדיניות (p)</label><select name="p"><option value="none">none · ניטור בלבד</option><option value="quarantine">quarantine · העברה לספאם</option><option value="reject">reject · דחייה</option></select></div>
-      <div class="field"><label>מדיניות לתת-דומיינים (sp)</label><select name="sp"><option value="">כמו הדומיין הראשי</option><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
-      <div class="field"><label>אחוז הודעות (pct)</label><input type="text" name="pct" dir="ltr" value="100" inputmode="numeric"></div>
-      <div class="field"><label>מייל לדוחות מצטברים (rua)</label><input type="text" name="rua" dir="ltr" placeholder="dmarc@example.co.il" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>מייל לדוחות כשל (ruf) · לא חובה</label><input type="text" name="ruf" dir="ltr" placeholder="" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>יישור DKIM (adkim)</label><select name="adkim"><option value="">r · גמיש (ברירת מחדל)</option><option value="s">s · קפדני</option></select></div>
-      <div class="field"><label>יישור SPF (aspf)</label><select name="aspf"><option value="">r · גמיש (ברירת מחדל)</option><option value="s">s · קפדני</option></select></div>
+      <div class="field"><label for="dmarcgen-domain">דומיין</label><input id="dmarcgen-domain" type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-p">מדיניות (p)</label><select id="dmarcgen-p" name="p"><option value="none">none · ניטור בלבד</option><option value="quarantine">quarantine · העברה לספאם</option><option value="reject">reject · דחייה</option></select></div>
+      <div class="field"><label for="dmarcgen-sp">מדיניות לתת-דומיינים (sp)</label><select id="dmarcgen-sp" name="sp"><option value="">כמו הדומיין הראשי</option><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
+      <div class="field"><label for="dmarcgen-pct">אחוז הודעות (pct)</label><input id="dmarcgen-pct" type="text" name="pct" dir="ltr" value="100" inputmode="numeric"></div>
+      <div class="field"><label for="dmarcgen-rua">מייל לדוחות מצטברים (rua)</label><input id="dmarcgen-rua" type="text" name="rua" dir="ltr" placeholder="dmarc@example.co.il" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-ruf">מייל לדוחות כשל (ruf) · לא חובה</label><input id="dmarcgen-ruf" type="text" name="ruf" dir="ltr" placeholder="" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="dmarcgen-adkim">יישור DKIM (adkim)</label><select id="dmarcgen-adkim" name="adkim"><option value="">r · גמיש (ברירת מחדל)</option><option value="s">s · קפדני</option></select></div>
+      <div class="field"><label for="dmarcgen-aspf">יישור SPF (aspf)</label><select id="dmarcgen-aspf" name="aspf"><option value="">r · גמיש (ברירת מחדל)</option><option value="s">s · קפדני</option></select></div>
     </form>
     <div class="out" aria-live="polite"></div>
   </section>
 
   <!-- DMARC XML -->
-  <section class="panel" data-panel="dmarcxml" role="tabpanel" hidden>
+  <section class="panel" data-panel="dmarcxml" hidden>
     <h2>ניתוח דוחות DMARC</h2>
     <p class="lead">גררו לכאן דוחות DMARC שהתקבלו במייל (קבצי ‎.xml, ‏‎.gz או ‎.zip) ותקבלו תמונה ברורה: מי שולח בשם הדומיין, ומה עובר או נכשל.</p>
     <label class="drop" id="dmarc-drop">
@@ -311,12 +334,12 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- M365 GENERATOR -->
-  <section class="panel" data-panel="m365gen" role="tabpanel" hidden>
+  <section class="panel" data-panel="m365gen" hidden>
     <h2>מחולל רשומות DNS ל-Microsoft 365</h2>
     <p class="lead">כל הרשומות שצריך להגדיר אצל ספק ה-DNS כדי לחבר דומיין ל-Microsoft 365.</p>
     <form class="gen" id="f-m365gen">
-      <div class="field"><label>דומיין</label><input type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
-      <div class="field"><label>הדומיין הראשוני של ה-Tenant</label><input type="text" name="initial" dir="ltr" placeholder="contoso.onmicrosoft.com" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="m365gen-domain">דומיין</label><input id="m365gen-domain" type="text" name="domain" dir="ltr" placeholder="example.co.il" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="m365gen-initial">הדומיין הראשוני של ה-Tenant</label><input id="m365gen-initial" type="text" name="initial" dir="ltr" placeholder="contoso.onmicrosoft.com" autocomplete="off" spellcheck="false"></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="intune" checked><span>Intune ורישום מכשירים</span></label>
         <label class="chip"><input type="checkbox" name="strict"><span>SPF מחמיר (‎-all)</span></label>
@@ -326,7 +349,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- CERT DECODER -->
-  <section class="panel" data-panel="certdec" role="tabpanel" hidden>
+  <section class="panel" data-panel="certdec" hidden>
     <h2>מפענח תעודות ו-CSR</h2>
     <p class="lead">הדביקו תעודה (CERTIFICATE) או בקשת תעודה (CSR) בפורמט PEM. הפענוח מתבצע בדפדפן בלבד.</p>
     <form id="f-certdec">
@@ -337,11 +360,11 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- PASSWORD -->
-  <section class="panel" data-panel="passgen" role="tabpanel" hidden>
+  <section class="panel" data-panel="passgen" hidden>
     <h2>מחולל סיסמאות</h2>
     <p class="lead">סיסמאות חזקות ואקראיות, שנוצרות בדפדפן שלכם באמצעות מחולל קריפטוגרפי. שום דבר לא נשלח ולא נשמר.</p>
     <form class="gen" id="f-passgen">
-      <div class="field wide"><label>אורך: <b id="pw-len-v">20</b></label><input type="range" name="len" min="8" max="64" value="20"></div>
+      <div class="field wide"><label for="passgen-len">אורך: <b id="pw-len-v">20</b></label><input id="passgen-len" type="range" name="len" min="8" max="64" value="20"></div>
       <div class="field wide"><div class="chips">
         <label class="chip"><input type="checkbox" name="upper" checked><span>אותיות גדולות A-Z</span></label>
         <label class="chip"><input type="checkbox" name="lower" checked><span>אותיות קטנות a-z</span></label>
@@ -354,7 +377,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- JWT -->
-  <section class="panel" data-panel="jwt" role="tabpanel" hidden>
+  <section class="panel" data-panel="jwt" hidden>
     <h2>מפענח JWT</h2>
     <p class="lead">הדביקו טוקן (למשל Access Token של Microsoft Entra) כדי לראות את התוכן שלו, מתי הוא פג ומה המשמעות של כל claim. הפענוח מקומי בלבד.</p>
     <form id="f-jwt"><textarea name="token" spellcheck="false" placeholder="eyJhbGciOi..." aria-label="JWT" style="min-height:120px"></textarea></form>
@@ -362,7 +385,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- SUBNET -->
-  <section class="panel" data-panel="subnet" role="tabpanel" hidden>
+  <section class="panel" data-panel="subnet" hidden>
     <h2>מחשבון Subnet</h2>
     <p class="lead">חישוב טווח רשת, Broadcast, מספר כתובות ומסכה. תומך ב-IPv4 וב-IPv6.</p>
     <form class="q" data-run="subnet">
@@ -373,7 +396,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- ENCODE -->
-  <section class="panel" data-panel="encode" role="tabpanel" hidden>
+  <section class="panel" data-panel="encode" hidden>
     <h2>קידוד ו-Hash</h2>
     <p class="lead">Base64, ‏URL, ‏Hex ו-Hash (MD5, ‏SHA). הכול מתבצע בדפדפן.</p>
     <form id="f-encode">
@@ -395,27 +418,27 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
   </section>
 
   <!-- QR -->
-  <section class="panel" data-panel="qr" role="tabpanel" hidden>
+  <section class="panel" data-panel="qr" hidden>
     <h2>מחולל QR</h2>
     <p class="lead">קוד QR לקישור, לטקסט או לחיבור מהיר לרשת Wi-Fi.</p>
     <div class="qrgrid">
       <form class="gen" id="f-qr" style="align-content:start">
-        <div class="field wide"><label>סוג</label><select name="kind"><option value="text">קישור / טקסט</option><option value="wifi">רשת Wi-Fi</option><option value="email">מייל</option></select></div>
-        <div class="field wide" data-k="text"><label>קישור או טקסט</label><input type="text" name="text" dir="ltr" placeholder="https://milabs.co.il"></div>
-        <div class="field" data-k="wifi" hidden><label>שם הרשת (SSID)</label><input type="text" name="ssid" dir="ltr"></div>
-        <div class="field" data-k="wifi" hidden><label>סיסמה</label><input type="text" name="wpass" dir="ltr"></div>
-        <div class="field" data-k="wifi" hidden><label>אבטחה</label><select name="sec"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">ללא סיסמה</option></select></div>
+        <div class="field wide"><label for="qr-kind">סוג</label><select id="qr-kind" name="kind"><option value="text">קישור / טקסט</option><option value="wifi">רשת Wi-Fi</option><option value="email">מייל</option></select></div>
+        <div class="field wide" data-k="text"><label for="qr-text">קישור או טקסט</label><input id="qr-text" type="text" name="text" dir="ltr" placeholder="https://milabs.co.il"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-ssid">שם הרשת (SSID)</label><input id="qr-ssid" type="text" name="ssid" dir="ltr"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-wpass">סיסמה</label><input id="qr-wpass" type="text" name="wpass" dir="ltr"></div>
+        <div class="field" data-k="wifi" hidden><label for="qr-sec">אבטחה</label><select id="qr-sec" name="sec"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">ללא סיסמה</option></select></div>
         <div class="field" data-k="wifi" hidden><label>&nbsp;</label><label class="chip"><input type="checkbox" name="hidden"><span>רשת מוסתרת</span></label></div>
-        <div class="field" data-k="email" hidden><label>כתובת</label><input type="text" name="to" dir="ltr"></div>
-        <div class="field" data-k="email" hidden><label>נושא</label><input type="text" name="subject"></div>
-        <div class="field"><label>תיקון שגיאות</label><select name="ec"><option value="M">בינוני (M)</option><option value="L">נמוך (L)</option><option value="Q">גבוה (Q)</option><option value="H">גבוה מאוד (H)</option></select></div>
+        <div class="field" data-k="email" hidden><label for="qr-to">כתובת</label><input id="qr-to" type="text" name="to" dir="ltr"></div>
+        <div class="field" data-k="email" hidden><label for="qr-subject">נושא</label><input id="qr-subject" type="text" name="subject"></div>
+        <div class="field"><label for="qr-ec">תיקון שגיאות</label><select id="qr-ec" name="ec"><option value="M">בינוני (M)</option><option value="L">נמוך (L)</option><option value="Q">גבוה (Q)</option><option value="H">גבוה מאוד (H)</option></select></div>
       </form>
       <div class="qrbox"><div id="qr-out" class="hint">הזינו תוכן כדי ליצור קוד</div><div class="toolbar" style="justify-content:center"><button type="button" class="btn ghost" id="qr-png" disabled>הורד PNG</button><button type="button" class="btn ghost" id="qr-svg" disabled>הורד SVG</button></div></div>
     </div>
   </section>
 
   <!-- UA -->
-  <section class="panel" data-panel="ua" role="tabpanel" hidden>
+  <section class="panel" data-panel="ua" hidden>
     <h2>מה הדפדפן שלי</h2>
     <p class="lead">פרטי הדפדפן, מערכת ההפעלה והמסך שלכם. שימושי כשתמיכה טכנית שואלת "באיזה דפדפן אתה משתמש?".</p>
     <div class="out" aria-live="polite"></div>
@@ -426,8 +449,9 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
 </main>
 
 <footer>
-  <p class="privacy">שאילתות DNS נשלחות ישירות מהדפדפן שלכם לשרתי DNS-over-HTTPS ציבוריים (Cloudflare ו-Google), וחיפוש תעודות נעשה מול crt.sh. כל השאר – ניתוח כותרות ודוחות, פענוח תעודות וטוקנים, סיסמאות וקידוד – מתבצע בדפדפן בלבד ולא נשלח לשום מקום.</p>
-  <div>© <span id="yr"></span> <a href="https://milabs.co.il">MiLabs</a> · פתרונות IT, אבטחה ואוטומציה</div>
+  <p class="privacy">שאילתות DNS נשלחות ישירות מהדפדפן שלכם לשרתי DNS-over-HTTPS ציבוריים (Cloudflare ו-Google), וחיפוש תעודות נעשה מול crt.sh. כל השאר – ניתוח כותרות ודוחות, פענוח תעודות וטוקנים, סיסמאות וקידוד – מתבצע בדפדפן בלבד ולא נשלח לשום מקום. אין באתר עוגיות או כלי מעקב.</p>
+  <nav class="footlinks" aria-label="מידע משפטי"><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a> · <a href="terms.html">תנאי שימוש</a> · <a href="https://github.com/Milabs-il/free-it-tools">קוד מקור</a></nav>
+  <div>© <span id="yr"></span> G2000 · <a href="https://milabs.co.il">MiLabs</a> · פתרונות IT, אבטחה ואוטומציה</div>
 </footer>
 
 <script>/* qrcode-generator 1.4.4 · (c) Kazuhiko Arase · MIT License */
@@ -545,9 +569,10 @@ function loading(out, msg='בודק...'){ out.innerHTML=`<div class="loading"><d
 function errBox(msg){ return `<div class="err">${esc(msg)}</div>`; }
 function rec(s){ return `<div class="record">${esc(s)}</div>`; }
 const ICON = {ok:'✓',warn:'!',bad:'✕',info:'i'};
+const SRL = {ok:'תקין',warn:'אזהרה',bad:'שגיאה',info:'הערה'};
 function check(level,title,desc='',extra=''){ return {level,title,desc,extra}; }
 function renderChecks(list){
-  return `<ul class="checks">${list.map(c=>`<li class="check ${c.level}"><div class="ic">${ICON[c.level]}</div><div style="min-width:0;flex:1"><div class="t">${c.title}</div>${c.desc?`<div class="d">${c.desc}</div>`:''}${c.extra||''}</div></li>`).join('')}</ul>`;
+  return `<ul class="checks">${list.map(c=>`<li class="check ${c.level}"><div class="ic" aria-hidden="true">${ICON[c.level]}</div><div style="min-width:0;flex:1"><div class="t"><span class="sr">${SRL[c.level]}: </span>${c.title}</div>${c.desc?`<div class="d">${c.desc}</div>`:''}${c.extra||''}</div></li>`).join('')}</ul>`;
 }
 function scoreBox(list, label){
   const n = l=>list.filter(c=>c.level===l).length;
@@ -558,7 +583,7 @@ function scoreBox(list, label){
   <div class="pills"><span class="pill ok">${n('ok')} תקין</span><span class="pill warn">${n('warn')} אזהרות</span><span class="pill bad">${n('bad')} שגיאות</span>${n('info')?`<span class="pill info">${n('info')} מידע</span>`:''}</div></div>`;
 }
 function table(headers, rows){
-  return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+  return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
 }
 function fmtTTL(s){ s=+s; if(s<60) return s+'s'; if(s<3600) return Math.round(s/60)+'m'; if(s<86400) return (s/3600).toFixed(s%3600?1:0)+'h'; return (s/86400).toFixed(s%86400?1:0)+'d'; }
 
@@ -1471,7 +1496,7 @@ function initQr(){
       qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];
       const q=qrcode(0,el.ec.value); q.addData(data,'Byte'); q.make();
       lastSvg=q.createSvgTag({cellSize:8,margin:4,scalable:true});
-      box.innerHTML=lastSvg; png.disabled=svgB.disabled=false;
+      box.innerHTML=lastSvg; const sv=box.querySelector('svg'); sv.setAttribute('role','img'); sv.setAttribute('aria-label','קוד QR'); png.disabled=svgB.disabled=false;
     }catch(e){ box.innerHTML=errBox('התוכן ארוך מדי לקוד QR'); png.disabled=svgB.disabled=true; lastSvg=''; }
   };
   const dl=(href,name)=>{ const a=document.createElement('a'); a.href=href; a.download=name; document.body.appendChild(a); a.click(); a.remove(); };
@@ -1529,7 +1554,7 @@ let currentTool=null;
 function renderNav(tool){
   const ci=catOf(tool);
   $('.cats').innerHTML=CATS.map((c,i)=>`<button type="button" class="cat" data-cat="${i}" aria-pressed="${i===ci}">${esc(c.name)}</button>`).join('');
-  $('.tabs').innerHTML=CATS[ci].tools.map(t=>`<button type="button" class="tab" role="tab" data-tool="${t}" aria-selected="${t===tool}">${esc(TOOL_NAMES[t])}</button>`).join('');
+  $('.tabs').innerHTML=CATS[ci].tools.map(t=>`<button type="button" class="tab" data-tool="${t}" aria-pressed="${t===tool}">${esc(TOOL_NAMES[t])}</button>`).join('');
 }
 function currentDomain(){ return document.querySelector('[data-panel]:not([hidden]) [name=domain]')?.value||''; }
 function showTool(name, domain){
@@ -1543,14 +1568,17 @@ function showTool(name, domain){
   if(name==='ua') showUA();
   if(domain && inp){ inp.value=domain; const fm=inp.form; if(fm.dataset.run) fm.requestSubmit(); else fm.dispatchEvent(new Event('input',{bubbles:true})); }
   currentTool=name;
+  document.title = TOOL_NAMES[name]+' – MiLabs Tools';
 }
 function go(name){ try{ history.replaceState(null,'','#'+name); }catch(e){} showTool(name); }
 document.addEventListener('click',e=>{
-  const c=e.target.closest('.cat'); if(c){ go(CATS[+c.dataset.cat].tools[0]); return; }
-  const t=e.target.closest('.tab'); if(t){ go(t.dataset.tool); return; }
+  // the nav is re-rendered on every switch, so put focus back on the matching new button (keyboard users)
+  const c=e.target.closest('.cat'); if(c){ const i=c.dataset.cat; go(CATS[+i].tools[0]); $(`.cat[data-cat="${i}"]`).focus(); return; }
+  const t=e.target.closest('.tab'); if(t){ const id=t.dataset.tool; go(id); $(`.tab[data-tool="${id}"]`).focus(); return; }
   const cp=e.target.closest('[data-copy]');
-  if(cp){ const txt=cp.dataset.copy, orig=cp.textContent; const done=()=>{ cp.textContent='הועתק ✓'; setTimeout(()=>cp.textContent=orig,1500); };
+  if(cp){ const txt=cp.dataset.copy, orig=cp.textContent; const done=()=>{ cp.textContent='הועתק ✓'; $('#sr-status').textContent='הועתק ללוח'; setTimeout(()=>{ cp.textContent=orig; $('#sr-status').textContent=''; },1500); };
     if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done).catch(()=>{}); return; }
+  if(e.target.closest('[data-skip]')){ e.preventDefault(); const h=document.querySelector('[data-panel]:not([hidden]) h2'); h.setAttribute('tabindex','-1'); h.focus(); return; }
   const cl=e.target.closest('[data-clear-panel],[data-clear]');
   if(cl){ const p=cl.closest('[data-panel]'); p.querySelectorAll('textarea').forEach(x=>x.value=''); p.querySelector('.out').innerHTML=''; }
 });
