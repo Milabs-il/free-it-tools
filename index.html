@@ -22,6 +22,9 @@ body{margin:0;font-family:Heebo,system-ui,-apple-system,"Segoe UI",Arial,sans-se
 a{color:var(--accent)}
 header.top{background:linear-gradient(120deg,#1e1b4b 0%,#312e81 45%,#0e7490 100%);color:#fff;padding:28px 20px 70px}
 .wrap{max-width:1080px;margin:0 auto}
+.top .wrap{position:relative}
+.langsw{position:absolute;inset-inline-end:0;top:4px;color:#fff;text-decoration:none;font-weight:700;font-size:14px;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px}
+.langsw:hover{background:rgba(255,255,255,.12)}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px;letter-spacing:.2px}
 .brand svg{flex:none}
 .brand small{font-weight:500;opacity:.75;font-size:14px;margin-inline-start:6px}
@@ -134,6 +137,7 @@ form.gen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));g
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#fff" fill-opacity=".14"/><path d="M8 24V10l5 8 4-8 4 8 5-8v14" fill="none" stroke="#67e8f9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       MiLabs<small>Tools</small>
     </div>
+    <a class="langsw" href="en/" hreflang="en" lang="en">English</a>
     <h1>כלי IT חינמיים: דומיין, מייל ואבטחה</h1>
     <p>כלים חינמיים לבדיקת דומיין, DNS ומייל, ל-Microsoft 365, לאבטחה ולרשת. בלי הרשמה, ורובם רצים בדפדפן שלכם.</p>
     <nav class="cats" aria-label="קטגוריות"></nav>
@@ -1563,6 +1567,7 @@ document.querySelectorAll('form:not([data-run]):not(#f-certdec)').forEach(f=>f.a
 function route(){ const [tool,dom]=(location.hash.slice(1)||'health').split('/'); showTool(tool, dom?normDomain(decodeURIComponent(dom), tool==='dns'||tool==='compare'):''); }
 window.addEventListener('hashchange',()=>{ const [tool]=location.hash.slice(1).split('/'); if(tool!==currentTool) route(); });
 document.getElementById('yr').textContent=new Date().getFullYear();
+$('.langsw').addEventListener('click',e=>{ e.preventDefault(); location.href=e.currentTarget.getAttribute('href')+location.hash; });
 route();
 </script>
 </body>

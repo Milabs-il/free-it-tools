@@ -2,12 +2,12 @@
 
 **20 free tools for DNS, email deliverability, Microsoft 365, security and networking. Everything runs in your browser, with no sign-up and no tracking.**
 
-🔗 **Live site:** https://milabs-tools-qfoxksbr.onslate.com
+🔗 **Live site:** [English](https://milabs-tools-qfoxksbr.onslate.com/en/) · [עברית (Hebrew)](https://milabs-tools-qfoxksbr.onslate.com/)
 🏢 **Built by:** [MiLabs](https://milabs.co.il), IT, security and automation services
 
 ![MiLabs Tools](docs/screenshots/home.png)
 
-> The interface is in Hebrew (RTL). Domain names, records and technical values are shown left-to-right as usual.
+> Available in English (`/en/`) and Hebrew (`/`). The screenshots below show the Hebrew (right-to-left) interface.
 
 ---
 
@@ -68,11 +68,11 @@
 - **Certificate search** queries [crt.sh](https://crt.sh) directly from your browser.
 - **The Microsoft 365 tenant lookup** reads Microsoft's public OpenID configuration endpoint.
 - **Fonts** (Heebo, JetBrains Mono) are loaded from Google Fonts.
-- **Everything else stays on your device:** header analysis, DMARC reports, certificate and JWT decoding, passwords, hashing and QR codes. You can confirm this by reading `index.html`.
+- **Everything else stays on your device:** header analysis, DMARC reports, certificate and JWT decoding, passwords, hashing and QR codes. You can confirm this by reading the source.
 
 ## How it works
 
-The whole site is a single, dependency-free `index.html`: plain HTML, CSS and JavaScript, with no build step. DNS lookups use the [DNS-over-HTTPS JSON API](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/). Certificates are parsed with a small built-in ASN.1/X.509 decoder.
+Each language is a single, dependency-free HTML file (`index.html` for Hebrew, `en/index.html` for English): plain HTML, CSS and JavaScript, with no build step. DNS lookups use the [DNS-over-HTTPS JSON API](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/). Certificates are parsed with a small built-in ASN.1/X.509 decoder.
 
 ### Run it yourself
 
@@ -90,9 +90,9 @@ Serve it over HTTP or HTTPS. Opening the file directly from disk works for the o
 Each tool has its own URL, and domain-based tools accept a domain:
 
 ```
-https://milabs-tools-qfoxksbr.onslate.com/#health/example.com
-https://milabs-tools-qfoxksbr.onslate.com/#spf/example.com
-https://milabs-tools-qfoxksbr.onslate.com/#subnet
+https://milabs-tools-qfoxksbr.onslate.com/en/#health/example.com
+https://milabs-tools-qfoxksbr.onslate.com/en/#spf/example.com
+https://milabs-tools-qfoxksbr.onslate.com/en/#subnet
 ```
 
 ## License
